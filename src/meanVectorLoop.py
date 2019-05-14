@@ -69,14 +69,12 @@ class BinaryClassificator:
                 self.FRR += 1
 
     def show(self):
+        print("For classificator {}".format(self.classificator.__name__))
         print("FAR is ", self.FAR / self.FAR_n)
         print("FRR is ", self.FRR / self.FRR_n)
 
 
-
 df = pd.read_csv("DSL-StrongPasswordData.csv")
-m = BinaryClassificator(df, cityblock)
-m.evaluate()
-
-
-
+for i in [cityblock, euclidean]:
+    m = BinaryClassificator(df, i)
+    m.evaluate()

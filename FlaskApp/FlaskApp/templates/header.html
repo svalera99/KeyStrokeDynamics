@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+</head>
+
+    <header class="top_header">
+        <ul>
+	    {% if session.logged_in %}
+	    <li class="sign_in">
+                <a href="/logout/">
+                    <p>Logout</p>
+                </a>
+	    {% else %}
+            </li>
+            <li class="sign_in">
+                <a href="/login/">
+                    <p>Sign in</p>
+                </a>
+            </li>
+            <li class="sign_up">
+                <a href="/register/">
+                    <p>Sign up</p>
+                </a>
+            </li>
+	    {% endif %}
+        </ul>
+    </header>
+    <header class="bot_header">
+        <div class="logo no_hover">
+            <a href="/">
+                            </a>
+        </div>
+    </header>
+<body style="heigth: 100%">
+
+
+	<div class="container" style="min-height:100%; width:80%; margin-left: 25rem;">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    {% for message in messages %}
+		  <div class="alert alert-warning alert-dismissible" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">?</span></button>
+			{{message}}
+		  </div>
+		{% endfor %}
+	  {% endif %}
+	{% endwith %}
+	
+	{% block body %}{% endblock %}
+	</div>
+		
+</body>
+</html>
